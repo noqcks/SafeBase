@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924213908) do
+ActiveRecord::Schema.define(version: 20140924223627) do
+
+  create_table "clinics", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "institution_id"
+    t.string   "password"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
