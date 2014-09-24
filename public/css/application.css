@@ -1,0 +1,14 @@
+#theheader {
+  opacity: 1;
+  margin: 15px 0 10px 0;
+  text-align: center;
+}
+
+#nav-list {
+  text-align: center;
+}
+
+#nav-list li {
+  display: inline;
+  list-style-type: none;
+}
