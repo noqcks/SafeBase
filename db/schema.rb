@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924223627) do
+ActiveRecord::Schema.define(version: 20140924225749) do
 
   create_table "clinics", force: true do |t|
     t.string   "name"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20140924223627) do
     t.string   "password"
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "results", force: true do |t|
+    t.integer  "clinic_id"
+    t.integer  "user_id"
+    t.integer  "herpes"
+    t.integer  "chlamydia"
+    t.integer  "gonorrhoeae"
+    t.integer  "hiv"
+    t.integer  "hepatitis"
+    t.integer  "syphilis"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
