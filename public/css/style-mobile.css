@@ -157,12 +157,20 @@
 	{
 	}
 
+	#navbar {
+		top: 0;
+		left: 0;
+		width: 0%;
+		height: 0%;
+		opacity: 0;
+	}
+
 		#navButton .toggle
 		{
 			position: absolute;
 			left: 0;
 			top: 0;
-			width: 100%;
+			width: 100%;2
 			height: 100%;
 		}
 		

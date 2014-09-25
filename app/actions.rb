@@ -6,3 +6,7 @@ end
 get '/login' do
   erb :login
 end
+
+get '/user' do
+  erb :'/user/index'
+end
