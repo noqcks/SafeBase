@@ -1,33 +1,32 @@
-# Homepage (Root path)
+
 get '/' do
   erb :index
 end
 
-get '/login' do
-  erb :login
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :'/users/show'
 end
 
-<<<<<<< HEAD
-get '/user' do
-  erb :'/user/index'
+get '/clinics' do
+  @clinics = Clinic.all
+  erb :'/clinics/show'
 end
-=======
-# get '/users/:id' do
-#   @user = User.find(params[:id])
-#   redirect 'views/users/show.erb'
-# end
 
-# get '/clinics/:id' do
-#   @clinic = Clinic.find(params[:id])
-#   redirect 'views/clinics/show/erb'
-# end
+get '/clinics/:id' do
+  @clinic = Clinic.find(params[:id])
+  erb :'/clinics/show'
+end
 
-# post '/results' do 
-#   @result = Result.new(
-#     )
-#   if @result.save
-#     redirect '/clinics/:id'
-#   else
-#     erb :'results/new'
-# end
->>>>>>> validations
+
+post '/login' do
+
+  #creates session with params and redirects to either users/:id or clinics/:id
+
+end
+
+post '/results' do
+
+  #creates a result row in the database from form params from clinic
+
+end
