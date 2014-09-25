@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924213908) do
+ActiveRecord::Schema.define(version: 20140925031316) do
+
+  create_table "clinics", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "institution_id"
+    t.string   "password"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
+  end
+
+  create_table "results", force: true do |t|
+    t.integer  "herpes"
+    t.integer  "chlamydia"
+    t.integer  "gonorrhoeae"
+    t.integer  "hiv"
+    t.integer  "hepatitis"
+    t.integer  "syphilis"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "clinic_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
