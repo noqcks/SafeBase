@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     validates :email, format: { with: VALID_EMAIL_REGEX, message: "Enter a valid Email address !" }
 
     validates_presence_of :first_name, :last_name, :date_of_birth, :email, :password, :personal_health_number
+
     validates :email, uniqueness: true
     validates :first_name, :last_name, :password, length: { maximum: 30 }
 end
