@@ -8,6 +8,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 
 require 'pry'
+require 'gon-sinatra'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
@@ -22,6 +23,8 @@ configure do
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
 end
+
+Sinatra::register Gon::Sinatra
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')

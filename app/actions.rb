@@ -1,8 +1,9 @@
-
+require_relative 'helpers'
 enable :sessions
+include Map
 
 helpers do
-  
+
   def login?
     if session[:id].nil?
       return false
@@ -23,6 +24,7 @@ get '/users/:id' do
 end
 
 get '/clinics' do
+  gon.locations = Map.location
   @clinics = Clinic.all
   erb :'/clinics/index'
 end
@@ -60,14 +62,14 @@ end
 
 post '/signup' do
   unless login?
-  user = User.create(
-    first_name: params[:first_name],
-    last_name: params[:last_name],
-    email: params[:email],
-    password: params[:password],
-    personal_health_number: params[:personal_health_number]
+    user = User.create(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      password: params[:password],
+      personal_health_number: params[:personal_health_number]
     )
-  redirect "/users/#{user.id}"
+    redirect "/users/#{user.id}"
   end
 end
 get '/logout' do
@@ -86,6 +88,13 @@ post '/result' do
     syphilis: params[:syphilis],
     user_id: user_id,
     clinic_id: session[:id]
-    )
+  )
   redirect "/clinics/#{session[:id]}"
+end
+
+get '/test' do
+  gon.locations = Map.location
+  @test = "test"
+  gon.test = @test
+  erb :'/gontest'
 end
