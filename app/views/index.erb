@@ -1,95 +1,21 @@
-<div id="signup">
-<h2>Sign Up For SafeBase</h2>
-<form action='/signup' method='post'>  
-  <div>
-    <input type="text" name="first_name" placeholder="First Name" required="required">
-  </div>
-  <div>
-    <input type="text" name="last_name" placeholder="Last Name" required="required">
-  </div>
-  <div>
-    <input type="text" name="email" placeholder="Email" required="required">
-  </div>
-  <div>
-    <input type="text" name="personal_health_number" placeholder="Health Care Number" pattern="^\d+$" required="required">
-  </div>
-    <div>
-    <input type="password" name="password" placeholder="Password" required="required">
-  </div>
-  <div>
-    <input type="submit" value="Sign Up">
-  </div>
-</form>
-</div>
-      
-<div id="signup">
-<h2>LOG IN</h2>
-<form action='/userlogin' method='post'>  
-  <div>
-    <input type="text" name="email" placeholder="Email" required="required">
-  </div>
-  <div>
-    <input type="password" name="password" placeholder="Password" required="required">
-  </div>
-  <div>
-    <input type="submit" value="Login">
-  </div>
-</form>
-</div>
-
-<div id="signup">
-<h2>Clinic Log In</h2>
-<form action='/cliniclogin' method='post'>  
-  <div>
-    <input type="text" name="institution_id" placeholder="Institution ID" required="required">
-  </div>
-  <div>
-    <input type="password" name="password" placeholder="Password" required="required">
-  </div>
-  <div>
-    <input type="submit" value="Login">
-  </div>
-</form>
-</div>
-    <!-- Banner -->
-      <section id="banner">
-        <header>
-          <h2>Info Here</h2>
-          <p>Master cleanse wolf post-ironic, wayfarers banjo four loko messenger bag Vice biodiesel banh mi mumblecore 8-bit deep v shabby chic. Street art trust fund cray brunch. Chillwave pork belly chambray church-key, vegan irony try-hard selvage. Locavore pork belly Cosby sweater tousled quinoa organic. Intelligentsia keffiyeh aesthetic readymade Austin. Kickstarter PBR Tonx Wes Anderson Carles typewriter, drinking vinegar Thundercats whatever hoodie raw denim leggings biodiesel 3 wolf moon bitters. Intelligentsia literally fixie gastropub retro.
-          </p>
-        </header>
-      </section>
-
-<!-- Main -->
-<div class="wrapper style2">
-
-  <article id="main" class="container special">
-    <p>Carles kitsch literally gentrify YOLO, single-origin coffee fashion axe normcore VHS. Keytar synth retro readymade cornhole deep v Neutra, squid bespoke tote bag tattooed. Helvetica chillwave freegan, semiotics 90's hella small batch tofu lo-fi drinking vinegar literally. Cosby sweater butcher Austin wayfarers wolf trust fund, Pinterest DIY small batch hoodie PBR Blue Bottle. Food truck narwhal quinoa, +1 cardigan DIY locavore High Life. Mustache mlkshk leggings, letterpress pour-over hella lo-fi umami wayfarers bespoke cray. Sustainable actually put a bird on it, chia trust fund hella selfies stumptown vinyl Pitchfork Neutra direct trade keytar tofu XOXO.</p>
-  </article>
-
-</div>
-
-<!-- Footer -->
-<div id="footer">
-  <div class="container">
-    <div class="row">
-    
-        <!-- Contact -->
-          <section class="contact">
-            <header>
-              <h3>Nisl turpis nascetur interdum?</h3>
-            </header>
-            <p>Urna nisl non quis interdum mus ornare ridiculus egestas ridiculus lobortis vivamus tempor aliquet.</p>
-            <ul class="icons">
-              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-              <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-              <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-              <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-              <li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
-            </ul>
-          </section>
+<div class="full" style="background: url('images/header.jpg')">
+  <div class="jumbotron indexsignup">
+    <form role="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1"></label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address">
       </div>
-    
-    </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1"></label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Check me out
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
   </div>
+</div>
+
