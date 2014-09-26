@@ -5,6 +5,22 @@ console.log(gon.test);
 console.log(gon.locations);
 </script>
 
+<p> <%= @clinics %> </p>
+
+<div>
+<% @clinics.each do |clinic| %>
+  <div>
+    <h3><a href="/clnics/<%= clinic.name %>"><%= clinic.name %></a> (  by: <%= clinic.city %>)</h3>
+
+  <p><a href="<%= clinic.phone %>"><%= clinic.phone %></a></p>
+
+  <h6>date created: <%= clinic.website %></h6>
+
+  </div>
+<% end %>
+</div>
+
+
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
@@ -22,7 +38,7 @@ console.log(gon.locations);
         for( i = 0; i < gon.locations.length; i++ ) {
           infoWindowContent.push(['<div class="info_content">' +
           '<h4>'+gon.locations[i][0]+'</h4>' +
-          '<div>'+gon.locations[i][4]+', <br>'+gon.locations[i][6]+'<br><a href="tel:+'+gon.locations[i][5]+'">'+gon.locations[i][5]+'</a><br><a href="http://'+gon.locations[i][3]+'/" target="_blank">'+gon.locations[i][3]+'</a></div>']);
+          '<div>'+gon.locations[i][4]+', <br>'+gon.locations[i][6]+'<br><a href="tel:+'+gon.locations[i][5]+'" style="text-decoration:none">'+gon.locations[i][5]+'</a><br><a href="http://'+gon.locations[i][3]+'/" target="_blank">'+gon.locations[i][3]+'</a></div>']);
         }
        for( i = 0; i < gon.locations.length; i++ ) {
           var position = new google.maps.LatLng(gon.locations[i][1], gon.locations[i][2]);

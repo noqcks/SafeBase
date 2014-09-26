@@ -8,6 +8,10 @@ html, body, #map-canvas {
 .accordion-heading
 {
     background-color:#0CF;
+  height: 600px;
+  width: 600px;
+  margin-left: 200px;
+  padding: 0px;
 }
 .accordion-heading:hover
 {
@@ -35,6 +39,7 @@ html, body, #map-canvas {
   padding-top: 2em;
   text-align: center;
 }
+
 .navbar {
   margin-bottom: 0px;
   background: #fff;
@@ -45,5 +50,3 @@ html, body, #map-canvas {
 
 .indexsignup {
   background: transparent;
-
-}
