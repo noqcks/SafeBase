@@ -4,11 +4,7 @@ enable :sessions
 helpers do
   
   def login?
-    if session[:id].nil?
-      return false
-    else
-      return true
-    end
+    session[:id].nil? ? false : true
   end
 end
 
@@ -32,20 +28,19 @@ get '/clinics/:id' do
   erb :'/clinics/show'
 end
 
-post '/userlogin' do
+post '/user/login' do
   unless login?
     if User.find_by(email: params[:email])
       @user = User.find_by(email: params[:email])
       if @user[:password] == params[:password]
         session[:id] = @user.id
-        redirect "/users/#{user.id}"
+        redirect "/users/#{@user.id}"
       end
     end
   end
-  erb :error
 end
 
-post '/cliniclogin' do
+post '/clinic/login' do
   unless login?
     if Clinic.find_by(institution_id: params[:institution_id])
       @clinic = Clinic.find_by(institution_id: params[:institution_id])
