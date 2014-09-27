@@ -1,76 +1,114 @@
 <% if @results %>
-  <% count = 1 %>
-  <div id="result">
+<% count = 1 %>
+<div id="result">
   <% @results.each do |result| %>
-    <div class="accordion" id="accordionid">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionid" href="index.html#<%= count %>">
-                    <h5>Result <%= count %> </h5>
-                </a>
-            </div>
-            <div id="<%= count %>" class="collapse">
-                <div class="accordion-inner">
-                  <p><span><%= result.user.first_name %> <%= result.user.last_name %></span><span class="inner-right"> <%= result.created_at.strftime("%d %b. %Y") %></span></p>
-                  <div class="results"><p>
-                  <% if result.herpes == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.herpes == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.herpes == -1%>
-                    <span class="red orb"></span>
-                  <% end %> herpes </p>
-                  <p>
-                  <% if result.chlamydia == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.chlamydia == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.chlamydia == -1%>
-                    <span class="red orb"></span>
-                  <% end %> chlamydia </p>
-
-                  <p>
-                  <% if result.gonorrhoeae == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.gonorrhoeae == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.gonorrhoeae == -1%>
-                    <span class="red orb"></span>
-                  <% end %> gonorrhea </p>
-
-                  <p>
-                  <% if result.hiv == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.hiv == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.hiv == -1%>
-                    <span class="red orb"></span>
-                  <% end %> hiv </p>
-
-                  <p>
-                  <% if result.hepatitis == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.hepatitis == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.hepatitis == -1%>
-                    <span class="red orb"></span>
-                  <% end %> hepatitis </p>
-
-                  <p>
-                  <% if result.syphilis == 1%>
-                    <span class="green orb"></span>
-                  <% elsif result.syphilis == 0%>
-                    <span class="grey orb"></span>
-                  <% elsif result.syphilis == -1%>
-                    <span class="red orb"></span>
-                  <% end %> syphilis </p>
-                  </div>
-                   <p><span class="inner-right"> Conducted by <%= result.clinic.name %></span><span class="inner-right"></span></p>
-                </div>
-            </div>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion " href="#panel<%= count %>">
+          <p>Result <%= count %> <span class="inner-right"><%= Time.now.day - result.created_at.day %> days ago</span></p>
+        </a>
+      </div>
+      <div id="panel<%= count %>" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p><span><%= result.user.first_name %> <%= result.user.last_name %></span><span class="inner-right"> <%= result.created_at.strftime("%d %b. %Y") %></span></p>
+          <div class="results"><p>
+            <% if result.herpes == 1%>
+            <span class="green orb"></span>
+            <% elsif result.herpes == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.herpes == -1%>
+            <span class="red orb"></span>
+            <% end %> herpes </p>
+            <p>
+            <% if result.chlamydia == 1%>
+            <span class="green orb"></span>
+            <% elsif result.chlamydia == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.chlamydia == -1%>
+            <span class="red orb"></span>
+            <% end %> chlamydia </p>
+            <p>
+            <% if result.gonorrhoeae == 1%>
+            <span class="green orb"></span>
+            <% elsif result.gonorrhoeae == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.gonorrhoeae == -1%>
+            <span class="red orb"></span>
+            <% end %> gonorrhea </p>
+            <p>
+            <% if result.hiv == 1%>
+            <span class="green orb"></span>
+            <% elsif result.hiv == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.hiv == -1%>
+            <span class="red orb"></span>
+            <% end %> hiv </p>
+            <p>
+            <% if result.hepatitis == 1%>
+            <span class="green orb"></span>
+            <% elsif result.hepatitis == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.hepatitis == -1%>
+            <span class="red orb"></span>
+            <% end %> hepatitis </p>
+            <p>
+            <% if result.syphilis == 1%>
+            <span class="green orb"></span>
+            <% elsif result.syphilis == 0%>
+            <span class="grey orb"></span>
+            <% elsif result.syphilis == -1%>
+            <span class="red orb"></span>
+            <% end %> syphilis </p>
           </div>
+          <p><span class="inner-right"> Conducted by <%= result.clinic.name %></span><span class="inner-right"></span></p>
+        </div>
+      </div>
     </div>
+  </div>
   <% count += 1%>
   <% end %>
+</div>
+<% end %>
+<% if @user.personal_health_number.nil? %>
+<div class="container">
+  <div class="jumbotron" id="health-number">
+    <p>
+    </p>
+    <div class="form-group">
+      <form method="post" action="/user/healthcare" >
+        <div class="form-group">
+          <label>
+            Please enter your healthcare number to continue:
+          </label>
+          <input type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn pull-right btn-success center">
+        Submit
+        </button>
+      </form>
+    </div>
   </div>
+</div>
+<% end %>
+<% if @results == [] %>
+<div class="container">
+  <div class="jumbotron" id="health-number">
+    <p>
+    </p>
+    <div class="form-group">
+      <form method="post" action="/user/healthcare" >
+        <div class="form-group">
+          <label>
+            Please enter your healthcare number to continue:
+          </label>
+          <input type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn pull-right btn-success center">
+        Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 <% end %>
