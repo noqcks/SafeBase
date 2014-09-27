@@ -1,9 +1,17 @@
-html, body, #map-canvas {
-        height: 600px;
-        width: 600px;
-        margin-left: 200px;
-        padding: 0px;
+#map-canvas {
+  height: 650px;
+  width: 650px;
+  margin-left: 5%;
+  margin-top: -3.6%;
+  padding: 0px;
+  float: left;
       }
+
+.overflow {
+    width: 200px;
+    height: 400px;
+  overflow: scroll;
+}
 
 .accordion-heading
 {
