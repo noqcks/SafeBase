@@ -1,28 +1,9 @@
 <%= include_gon %>
 
-<script>
-console.log(gon.test);
-console.log(gon.locations);
-</script>
-
-<p> <%= @clinics %> </p>
+<div class="row">
+<div class="col-md-6" id="map-canvas"></div>
 
 <div>
-<% @clinics.each do |clinic| %>
-  <div>
-    <h3><a href="/clnics/<%= clinic.name %>"><%= clinic.name %></a> (  by: <%= clinic.city %>)</h3>
-
-  <p><a href="<%= clinic.phone %>"><%= clinic.phone %></a></p>
-
-  <h6>date created: <%= clinic.website %></h6>
-
-  </div>
-<% end %>
-</div>
-
-
-<div id="map-canvas"></div>
-
 <script type="text/javascript">
 
       function initialize() {
@@ -64,4 +45,25 @@ console.log(gon.locations);
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+  </script>
+</div>
+
+<div style="color:#4c4945;" class="col-md-6">
+<h1>Get Checked Out</h1>
+
+<p>Looking to try Glass in person or get one-on-one support? Our Glass Guides are product experts who can advise you at one of our on-site locations in San Francisco, Los Angeles, and New York. Schedule your Basecamp visit to try Glass, make a purchase, or get hands-on help. Looking forward to seeing you soon!</p><br>
+<div class="col-md-4">
+<% @clinics.each do |clinic| %>
+<div>
+  <address>
+    <strong><%= clinic.name %></strong><br>
+    <%= clinic.address %><br>  
+    <%= clinic.city %><br>
+    <abbr title="Phone">P:</abbr> <%= clinic.phone %><br>
+    <a href="<% clinic.website %>"><%= clinic.website %></a>
+  </address>
+  </div>
+  <% end %>
+  </div>
+</div>
+</div>

@@ -1,9 +1,17 @@
 #map-canvas {
-        height: 600px;
-        width: 600px;
-        margin-left: 200px;
-        padding: 0px;
-      }
+  height: 650px;
+  width: 650px;
+  margin-left: 5%;
+  margin-top: -3.6%;
+  padding: 0px;
+  float: left;
+}
+
+.overflow {
+  width: 200px;
+  height: 400px;
+  overflow: scroll;
+}
 
 .red{
     background-color: rgb(226,0,0);  
@@ -31,17 +39,15 @@
                 0px 0px 3px 2px rgba(135, 135, 134,0.5);  
 }
 
-
-
 .inner-right {
   float: right;
-
 }
 
 .results {
   margin-left: auto;
   width: 30%;
   margin-right: auto;
+>>>>>>> 3a28ecd4c8d804f237e5be7ccc67915fdeeda573
 }
 
 .accordion-heading
@@ -90,13 +96,6 @@ h5 {
     color:#FFF; 
     text-decoration:none; 
     text-transform:uppercase;
-
-}
-
-.full {
-  background: url("../images/header.jpf");
-  width: 100%;
-  height: 100%;
 }
 
 #user-show {
@@ -114,3 +113,23 @@ h5 {
 
 .indexsignup {
   background: transparent;
+}
+
+.full {
+  background: url("../images/header.jpf");
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+}
+
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.about {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+
