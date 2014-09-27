@@ -1,28 +1,76 @@
-<div class="accordion" id="accordionid">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionid" href="index.html#one">
-                <h5>Result 1</h5>
-            </a>
-        </div>
-        <div id="one" class="collapse">
-            <div class="accordion-inner">
-                <p>
-                    You have herpes
-                </p>
+<% if @results %>
+  <% count = 1 %>
+  <div id="result">
+  <% @results.each do |result| %>
+    <div class="accordion" id="accordionid">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionid" href="index.html#<%= count %>">
+                    <h5>Result <%= count %> </h5>
+                </a>
             </div>
-        </div>
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionid" href="index.html#two">
-                <h5>Result 2</h5>
-            </a>
-        </div>
-        <div id="two" class="collapse">
-            <div class="accordion-inner">
-                <p>
-                    You have AIDs
-                </p>
+            <div id="<%= count %>" class="collapse">
+                <div class="accordion-inner">
+                  <p><span><%= result.user.first_name %> <%= result.user.last_name %></span><span class="inner-right"> <%= result.created_at.strftime("%d %b. %Y") %></span></p>
+                  <div class="results"><p>
+                  <% if result.herpes == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.herpes == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.herpes == -1%>
+                    <span class="red orb"></span>
+                  <% end %> herpes </p>
+                  <p>
+                  <% if result.chlamydia == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.chlamydia == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.chlamydia == -1%>
+                    <span class="red orb"></span>
+                  <% end %> chlamydia </p>
+
+                  <p>
+                  <% if result.gonorrhoeae == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.gonorrhoeae == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.gonorrhoeae == -1%>
+                    <span class="red orb"></span>
+                  <% end %> gonorrhea </p>
+
+                  <p>
+                  <% if result.hiv == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.hiv == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.hiv == -1%>
+                    <span class="red orb"></span>
+                  <% end %> hiv </p>
+
+                  <p>
+                  <% if result.hepatitis == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.hepatitis == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.hepatitis == -1%>
+                    <span class="red orb"></span>
+                  <% end %> hepatitis </p>
+
+                  <p>
+                  <% if result.syphilis == 1%>
+                    <span class="green orb"></span>
+                  <% elsif result.syphilis == 0%>
+                    <span class="grey orb"></span>
+                  <% elsif result.syphilis == -1%>
+                    <span class="red orb"></span>
+                  <% end %> syphilis </p>
+                  </div>
+                   <p><span class="inner-right"> Conducted by <%= result.clinic.name %></span><span class="inner-right"></span></p>
+                </div>
             </div>
-        </div>
+          </div>
     </div>
-</div>
+  <% count += 1%>
+  <% end %>
+  </div>
+<% end %>
