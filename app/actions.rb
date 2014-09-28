@@ -1,8 +1,8 @@
-require_relative 'helpers'
+require_relative 'map'
 enable :sessions
 include Map
-
-helpers do
+ 
+helpers do 
 
   def login?
     if session[:id].nil?
@@ -12,6 +12,7 @@ helpers do
     end
   end
 end
+
 
 get '/' do
   erb :index
@@ -31,7 +32,7 @@ end
 
 get '/clinics/:id' do
   @clinic = Clinic.find(params[:id])
-  erb :'/clinics/show'
+  erb :'/clinics/show', :layout => false
 end
 
 post '/userlogin' do
@@ -58,6 +59,12 @@ post '/cliniclogin' do
     end
   end
   erb :error
+end
+
+post '/find' do
+  @clinic = Clinic.find(1)
+  @user = User.find_by(personal_health_number: params[:personal_health_number])
+  erb :"/clinics/show"
 end
 
 post '/signup' do
