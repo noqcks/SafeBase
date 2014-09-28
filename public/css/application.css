@@ -1,18 +1,59 @@
+.signup {
+    margin-top: 250px;
+}
+#about {
+    margin-top: 40px;
+}
+.user {
+    background: url('../images/user-background-1.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.find-clinic {
+    width: 600px;
+    text-align: center;
+    border-radius: 2%;
+    margin: auto;
+    margin-top: 150px;
+    color: black;
+    background-color: #f8f8f8;
+}
+html, body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    height: 100%;
+}
+#main, #main>.row {
+    height: 100%;
+}
+#main>.row {
+    overflow-y: scroll;
+}
+#left {
+    height: 100%;
+}
+.panel-default {
+    margin-right: 15px;
+}
+.panel-group {
+    margin-bottom: 5px;
+}
 #map-canvas {
-  height: 650px;
-  width: 650px;
-  margin-left: 5%;
-  margin-top: -3.6%;
-  padding: 0px;
-  float: left;
+    width: 66.6666666%;
+    height: 100%;
+    position: absolute;
+    right: 16px;
+    top: 50px;
+    bottom: 0;
+    overflow: hidden;
 }
-
-.overflow {
-  width: 200px;
-  height: 400px;
-  overflow: scroll;
-}
-
 .red {
     background-color: rgb(226, 0, 0);
     box-shadow: inset 0px 1px 0px 0px rgba(250, 250, 250, 0.5), 0px 0px 3px 2px rgba(226, 0, 0, 0.5);
@@ -41,12 +82,12 @@
     width: 30%;
     margin-right: auto;
 }
-.panel-default > .panel-heading {
+.result-default > .result-heading {
     color: #fff;
     background-color: #428bca;
     border-color: #357ebd;
 }
-.panel-body {
+.result-body {
     background-color: #eee;
 }
 #result {
@@ -55,17 +96,18 @@
     margin-left: auto;
     width: 940px;
 }
-.panel-inner {
+.result-inner {
     margin: 40px;
 }
-.panel-default {
+.result-default {
     margin-bottom: 2px;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    margin-right: 10px;
 }
-.panel-toggle {
+.result-toggle {
     display: block;
     padding: 8px 15px;
     cursor: pointer;
@@ -75,28 +117,83 @@ h5 {
     color: #FFF;
     text-decoration: none;
 }
-.panel-heading:hover {
+.result-heading:hover {
     background-color: #000;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
-.panel-heading > a {
+.result-heading > a {
     color: #FFF;
     text-decoration: none;
     text-transform: uppercase;
 }
-.full {
+.map-default > .map-heading {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+.map-body {
+    background-color: #eee;
+}
+.map-default {
+    margin-bottom: 2px;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+.map-toggle {
+    display: block;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+.panel-toggle > p {
+    margin: 0px;
+}
+.map-heading:hover {
+    background-color: #000;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.map-heading > a {
+    color: #FFF;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#full {
     background: url("../images/header.jpg");
     width: 100%;
     height: 100%;
+    background-size: cover;
+    text-align: center;
+    color: #fff
 }
-#user-show {
+#full .inner {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 4em 0 0 0;
+    font-size: 14pt;
+    line-height: 1.75em;
+}
+#full #user-show {
     padding-top: 2em;
     text-align: center;
 }
-
+.button {
+    background: #df7366;
+    font-size: 1.25em;
+    line-height: 4.5em;
+    height: 4.5em;
+    width: 4.5em;
+    border-radius: 100%;
+    display: inline-block;
+}
 .navbar {
     margin-bottom: 0px;
     background: #fff;
@@ -113,6 +210,9 @@ body {
 #health-number {
     width: 60%;
     margin: auto;
+    background-color: #f8f8f8;
+    color: black;
+    margin-top: 150px;
 }
 .center {
     margin: 0 auto;
@@ -127,4 +227,7 @@ body {
 .modal-dialog-center {
     margin-top: 15%;
 }
-
+#no-scroll {
+    overflow-y: scroll;
+    height: 650px;
+}

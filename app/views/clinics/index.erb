@@ -1,69 +1,31 @@
 <%= include_gon %>
-
-<div class="row">
-<div class="col-md-6" id="map-canvas"></div>
-
-<div>
-<script type="text/javascript">
-
-      function initialize() {
-        var mapOptions = {
-          center: { lat: 49.282040, lng: -123.108194},
-          zoom: 18
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-
-        var infoWindowContent = [];
-
-        for( i = 0; i < gon.locations.length; i++ ) {
-          infoWindowContent.push(['<div class="info_content">' +
-          '<h4>'+gon.locations[i][0]+'</h4>' +
-          '<div>'+gon.locations[i][4]+', <br>'+gon.locations[i][6]+'<br><a href="tel:+'+gon.locations[i][5]+'" style="text-decoration:none">'+gon.locations[i][5]+'</a><br><a href="http://'+gon.locations[i][3]+'/" target="_blank">'+gon.locations[i][3]+'</a></div>']);
-        }
-       for( i = 0; i < gon.locations.length; i++ ) {
-          var position = new google.maps.LatLng(gon.locations[i][1], gon.locations[i][2]);
-          //bounds.extend(position);
-          marker = new google.maps.Marker({
-              position: position,
-              map: map,
-              title: gon.locations[i][0],
-              animation: google.maps.Animation.DROP
-          });
-
-
-
-        var infoWindow = new google.maps.InfoWindow({ maxWidth: 300 }), marker, i;
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                  infoWindow.setContent(infoWindowContent[i][0]);
-                  infoWindow.open(map, marker);
-              };
-          })(marker, i));
-      }
+<!-- <form class="navbar-form">
+  <input type="text" class="form-control" placeholder="What are you searching for?">
+  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+</form>  -->
+<div id="map-canvas"></div>
+<div class="container-fluid" id="main">
+  <div class="row">
+    <div class="col-xs-4" id="left">
       
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
-</div>
-
-<div style="color:#4c4945;" class="col-md-6">
-<h1>Get Checked Out</h1>
-
-<p>Looking to try Glass in person or get one-on-one support? Our Glass Guides are product experts who can advise you at one of our on-site locations in San Francisco, Los Angeles, and New York. Schedule your Basecamp visit to try Glass, make a purchase, or get hands-on help. Looking forward to seeing you soon!</p><br>
-<div class="col-md-4">
-<% @clinics.each do |clinic| %>
-<div>
-  <address>
-    <strong><%= clinic.name %></strong><br>
-    <%= clinic.address %><br>  
-    <%= clinic.city %><br>
-    <abbr title="Phone">P:</abbr> <%= clinic.phone %><br>
-    <a href="<% clinic.website %>"><%= clinic.website %></a>
-  </address>
+      <h2>Clinic Locations</h2>
+      <% @clinics.each do |clinic| %>
+      
+      <!-- item list -->
+      <div class="panel-group map-group">
+        <div class="panel panel-default map-default">
+          <div class="panel-heading map-heading">
+            <a class="panel-toggle" href=""><p><%= clinic.name %></p></a></div>
+          </div>
+          <p>Adress: <%= clinic.address %></p>
+          <p>City: <%= clinic.city %></p>
+          <p>Phone: <%= clinic.phone %></p>
+          <p>Website: <a href="<% clinic.website %>"></a><%= clinic.website %></p>
+          <hr>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-8"></div>
+      
+    </div>
   </div>
-  <% end %>
-  </div>
-</div>
-</div>

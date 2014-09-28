@@ -42,6 +42,12 @@ post '/user/login' do
   end
 end
 
+post '/user/healthcare' do
+  user = User.find(params[:id])
+  user.update(personal_health_number: params[:personal_health_number])
+  redirect "/users/#{params[:id]}"
+end
+
 post '/clinic/login' do
   unless login?
     if Clinic.find_by(institution_id: params[:institution_id])
@@ -56,15 +62,20 @@ post '/clinic/login' do
 end
 
 post '/signup' do
+  names = Namae.parse params[:name] 
+  name = names[0]
   unless login?
     user = User.create(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
+      first_name: name.given,
+      last_name: name.family,
       email: params[:email],
-      password: params[:password],
-      personal_health_number: params[:personal_health_number]
+      password: params[:password]
     )
-    redirect "/users/#{user.id}"
+    if user.save
+      redirect "/users/#{user.id}"
+    else
+      redirect '/'
+    end
   end
 end
 get '/logout' do

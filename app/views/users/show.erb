@@ -1,16 +1,17 @@
+<div class="user">
 <% if @results %>
 <% count = 1 %>
 <div id="result">
   <% @results.each do |result| %>
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion " href="#panel<%= count %>">
+  <div class="panel-group result-group" id="accordion">
+    <div class="panel panel-default result-default">
+      <div class="panel-heading result-heading">
+        <a class="panel-toggle result-toggle" data-toggle="collapse" data-parent="#accordion " href="#panel<%= count %>">
           <p>Result <%= count %> <span class="inner-right"><%= Time.now.day - result.created_at.day %> days ago</span></p>
         </a>
       </div>
-      <div id="panel<%= count %>" class="panel-collapse collapse">
-        <div class="panel-body">
+      <div id="panel<%= count %>" class="panel-collapse collapse result-collapse">
+        <div class="panel-body result-body">
           <p><span><%= result.user.first_name %> <%= result.user.last_name %></span><span class="inner-right"> <%= result.created_at.strftime("%d %b. %Y") %></span></p>
           <div class="results"><p>
             <% if result.herpes == 1%>
@@ -61,7 +62,7 @@
             <span class="red orb"></span>
             <% end %> syphilis </p>
           </div>
-          <p><span class="inner-right"> Conducted by <%= result.clinic.name %></span><span class="inner-right"></span></p>
+          <p><span class="inner-right"> Conducted by <%= result.clinic.name%></span><span class="inner-right"></span></p>
         </div>
       </div>
     </div>
@@ -71,6 +72,7 @@
 </div>
 <% end %>
 <% if @user.personal_health_number.nil? %>
+
 <div class="container">
   <div class="jumbotron" id="health-number">
     <p>
@@ -81,9 +83,10 @@
           <label>
             Please enter your healthcare number to continue:
           </label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="personal_health_number" required="required">
+          <input type="text" style="display:none;" name="id" value="<%= @user.id %>">
         </div>
-        <button type="submit" class="btn pull-right btn-success center">
+        <button type="submit" class="btn pull-right btn-primary center">
         Submit
         </button>
       </form>
@@ -91,24 +94,22 @@
   </div>
 </div>
 <% end %>
-<% if @results == [] %>
+<% if @results == []%>
 <div class="container">
-  <div class="jumbotron" id="health-number">
-    <p>
-    </p>
-    <div class="form-group">
-      <form method="post" action="/user/healthcare" >
-        <div class="form-group">
-          <label>
-            Please enter your healthcare number to continue:
-          </label>
-          <input type="text" class="form-control">
-        </div>
-        <button type="submit" class="btn pull-right btn-success center">
-        Submit
+  <div class="jumbotron find-clinic" id="health-number">
+    <div>
+      <h2>
+      Find a clinic
+      </h2>
+      <p>
+      </p>
+      <form action="/clinics">
+        <button type="submit" class="btn btn-primary">
+        Go!
         </button>
       </form>
     </div>
   </div>
 </div>
-<% end %>
+</div>
+<% end unless @user.personal_health_number.nil? %>
