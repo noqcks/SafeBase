@@ -105,9 +105,3 @@ post '/result' do
   redirect "/clinics/#{session[:id]}"
 end
 
-get '/test' do
-  gon.locations = Map.location
-  @test = "test"
-  gon.test = @test
-  erb :'/gontest'
-end

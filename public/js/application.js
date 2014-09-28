@@ -5,7 +5,7 @@ $(document).ready(function() {
                 lat: 49.282040,
                 lng: -123.108194
             },
-            zoom: 18
+            zoom: 12
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
