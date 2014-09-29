@@ -20,16 +20,73 @@
           <button type="submit" class="btn btn-default btn-primary btn-default pull-right">Sign up for SafeBase</button>
         </form>
       </div>
-
     </div>
   </div>
-
-
 </div>
-<div class="container">
-  <div id="about">
-    <p>Lorem ipsum dolor sit amet, omittam mediocrem ex vix, sit assum offendit ad. Feugiat epicurei an est, eam animal iuvaret fierent ut, quo eu illum erroribus. Mucius tincidunt repudiandae et vim, usu et vidit albucius. Et reque dicant mei. At quem wisi usu. Purto epicurei pro ne, phaedrum indoctum vis ut.</p>
-    <p>
-    Liberavisse contentiones vix at. Dolorum expetenda et vel, ex electram cotidieque pri. Has magna putent noluisse cu, labore deleniti sed ea, vix magna summo deserunt eu. Mel et dicant repudiandae consectetuer, eu iriure disputationi sed, id eum fuisset dolores. His phaedrum disputando id, at ius nonumes officiis assueverit. Posse deleniti est ut, quo fabulas fierent id, in dicant eruditi nam.</p>
+<div id="banner">
+  <h2>SafeBase</h2>
+  <p>Join the <em>nouveau</em> sexual revolution</p>
+</div>
+<div class="row about">
+<a name="about"></a>
+  <div class="col-md-4 col-md-offset-1">
+    <div class="white-box-about">
+      <h1>About Us</h1>
+      <h4>Safebase is the premier site to securely store and access your sexual health records online. We are dedicated to giving you the most convenient and confidential method to have your health history on hand when you need it. Safebase was built with the philosophy that sexual health is important for you and your partner.</h4>
+      <h4>We make it safe and easy to share medical history with those you care about. No need to carry paper documents with you. After you get a check up your work is done. Our partnered medical clinics take care of submitting your exam results. It's that easy.</h4>
+    <h4>At Safebase, we aim to make sexual health an important part of your life. By promoting a safe and responsible lifestyle you'll help in decreasing sexually transmitted infections. Join Safebase today and start to enjoy life without the worry.</h4></div>
+  </div>
+  <div class="col-md-4 col-md-offset-1" id="quotes">
+    <h2 class="quotes">"Having my medical results anytime I need them has been invaluable. It gives me peace of mind that I never had before. Thanks Safebase!" <p>-John Ackerman</p></h2>
+    <h2 class="quotes">"I had so much trouble proving to my partners that I was clean, all that changed after I started using Safebase. It was so easy to get setup!"<p>-Tommy Lee</p></h2>​
+    <h2 class="quotes">"This changes everything. Again"<p>-Sean Rad</p></h2>
+    <h2 class="quotes">"WOW! An incredible idea. This is the greatest thing since sliced bread"<br>-Mark Zuckerberg</h2>
   </div>
 </div>
+<div class="container footer">
+<a name="contact"></a>
+  <h1>Contact Us</h1>
+  <div class="col-md-8">
+    <form id="contact" method="post" class="form" role="form">
+      <div class="row">
+        <div class="col-xs-6 col-md-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required autofocus />
+        </div>
+        <div class="col-xs-6 col-md-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required />
+        </div>
+      </div>
+      <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
+      <br />
+      <div class="row">
+        <div class="col-xs-12 col-md-12 form-group">
+          <button class="btn btn-primary pull-right" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <address>
+      <strong>SafeBase, Inc.</strong><br>
+      795 Folsom Ave, Suite 600<br>
+      Vancouver, BC V7N C8G<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+
+  </div>
+</div>
+
+<script>
+(function() {
+var quotes = $(".quotes");
+var quoteIndex = -1;
+function showNextQuote() {
+++quoteIndex;
+quotes.eq(quoteIndex % quotes.length)
+.fadeIn(2000)
+.delay(2000)
+.fadeOut(5000, showNextQuote);
+}
+showNextQuote();
+})();
+</script>

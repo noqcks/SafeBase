@@ -38,9 +38,12 @@ post '/user/login' do
       if @user[:password] == params[:password]
         session[:id] = @user.id
         redirect "/users/#{@user.id}"
+      else
+        redirect '/'
       end
     end
   end
+  redirect '/'
 end
 
 post '/user/healthcare' do
@@ -63,7 +66,7 @@ post '/clinic/login' do
 end
 
 post '/find' do
-  @clinic = Clinic.find(1)
+  @clinic = Clinic.find(session[:id])
   @user = User.find_by(personal_health_number: params[:personal_health_number])
   erb :"/clinics/show"
 end
