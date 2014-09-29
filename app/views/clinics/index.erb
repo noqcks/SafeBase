@@ -1,5 +1,4 @@
 <%= include_gon %>
-
 <div id="map-canvas"></div>
 <div class="container-fluid" id="main">
   <div class="row">
@@ -7,8 +6,6 @@
       
       <h2>Clinic Locations</h2>
       <% @clinics.each do |clinic| %>
-
-      <!-- item list -->
       <div class="panel-group map-group">
         <div class="panel panel-default map-default">
           <div class="panel-heading map-heading">
@@ -20,9 +17,8 @@
           <p>Website: <a href="<% clinic.website %>"></a><%= clinic.website %></p>
           <hr>
           <% end %>
-        </div>
       </div>
-      <div class="col-xs-8"></div>
-      
     </div>
+    <div class="col-xs-8"></div> 
   </div>
+</div>

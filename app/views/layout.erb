@@ -42,9 +42,15 @@
               <a href="/logout">Logout</a>
             </li>
             <% else %>
-            <li>
-              <a href="/users/<%= session[:id] %>">Profile</a>
-            </li>
+            <% if institution? %>
+              <li>
+                <a href="/clinics/<%= session[:id] %>">Dashboard</a>
+              </li>
+              <% else %>
+              <li>
+                <a href="/users/<%= session[:id] %>">Profile</a>
+              </li>
+            <% end %>
             <li>
               <a href="/logout">Logout</a>
             </li>
@@ -66,13 +72,13 @@
             <% else %>
             <% if request.url.include?("clinics") %>
             <li>
-              <a data-toggle="modal" data-target="#Modal" href="#">Sign In</a>
+              <a data-toggle="modal" data-target="#login" href="#">Sign In</a>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
-                  <a href="#">Clinic Sign In</a>
+                  <a data-toggle="modal" href="#" data-target="#clinic-login">Clinic Sign In</a>
                 </li>
               </ul>
             </li>
@@ -114,10 +120,10 @@
             <form accept-charset="UTF-8" method="post" action="/user/login">
               <fieldset>
                 <div class="form-group">
-                  <input class="form-control" placeholder="E-mail" name="email" type="text">
+                  <input class="form-control" placeholder="E-mail" name="email" type="text" required="required">
                 </div>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Password" name="password" type="password">
+                  <input class="form-control" placeholder="Password" name="password" type="password" required="required">
                 </div>
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
               </fieldset>
@@ -137,10 +143,10 @@
             <form accept-charset="UTF-8" method="post" action="/clinic/login">
               <fieldset>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Institution ID" name="institution_id" type="text">
+                  <input class="form-control" placeholder="Institution ID" name="institution_id" type="text" required="required">
                 </div>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Password" name="password" type="password">
+                  <input class="form-control" placeholder="Password" name="password" type="password" required="required">
                 </div>
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
               </fieldset>

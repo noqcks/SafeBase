@@ -1,4 +1,6 @@
 class Result < ActiveRecord::Base
+    DISEASES = [:herpes, :chlamydia, :gonorrhoeae, :hiv, :hepatitis, :syphilis]
+
     belongs_to :user
     belongs_to :clinic
 

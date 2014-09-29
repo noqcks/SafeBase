@@ -7,8 +7,12 @@ helpers do
   def login?
     session[:id].nil? ? false : true
   end
-end
 
+  def institution?
+    session[:institution_id].nil? ? false: true
+  end
+
+end
 
 get '/' do
   erb :index
@@ -16,7 +20,6 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-  @results = @user.results
   erb :'/users/show'
 end
 
@@ -82,29 +85,36 @@ post '/signup' do
       password: params[:password]
     )
     if user.save
+      session[:id] = user.id
       redirect "/users/#{user.id}"
     else
       redirect '/'
     end
   end
+  redirect '/'
 end
+
 get '/logout' do
   session.clear
   redirect '/'
 end
 
 post '/result' do
-  user_id = User.find_by(personal_health_number: params[:personal_health_number]).id
-  Result.create(
-    herpes: params[:herpes],
-    chlamydia: params[:chlamydia],
-    gonorrhoeae: params[:gonorrhoeae],
-    hiv: params[:hiv],
-    hepatitis: params[:hepatitis],
-    syphilis: params[:syphilis],
-    user_id: user_id,
-    clinic_id: session[:id]
-  )
-  redirect "/clinics/#{session[:id]}"
+  if user_id = User.find_by(personal_health_number: params[:personal_health_number]).id
+    Result.create(
+      herpes: params[:herpes],
+      chlamydia: params[:chlamydia],
+      gonorrhoeae: params[:gonorrhoeae],
+      hiv: params[:hiv],
+      hepatitis: params[:hepatitis],
+      syphilis: params[:syphilis],
+      user_id: user_id,
+      clinic_id: session[:id]
+    )
+    redirect "/clinics/#{session[:id]}"
+  else
+    redirect "/clinics/#{session[:id]}"
+  end 
+  redirect '/'
 end
 

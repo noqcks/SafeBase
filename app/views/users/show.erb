@@ -1,78 +1,79 @@
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Result</h4>
+      </div>
+      <div class="modal-body">
+        <img src="../images/sample-result.jpg" width="400px" height="400px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Download</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="user">
-<% if @results %>
-<% count = 1 %>
+
+
+
+<% if @user.results != [] %>
+<% count = 0 %>
 <div id="result">
-  <% @results.each do |result| %>
+  <% Result::DISEASES.each do |disease| %>
   <div class="panel-group result-group" id="accordion">
     <div class="panel panel-default result-default">
       <div class="panel-heading result-heading">
         <a class="panel-toggle result-toggle" data-toggle="collapse" data-parent="#accordion " href="#panel<%= count %>">
-          <p>Result <%= count %> <span class="inner-right"><%= Time.now.day - result.created_at.day %> days ago</span></p>
+          <p>
+          <strong><%= disease.upcase %></strong><span class="inner-right"><strong><%= @user.current_diagnosis(disease) %></strong>
+            <% if @user.current_diagnosis(disease) == "NEGATIVE" %>
+              <i class="fa fa-minus-square fa-lg"></i>
+            <% end %>
+            <% if @user.current_diagnosis(disease) == "POSITIVE" %>
+              <i class="fa fa-plus-square fa-lg"></i>
+            <% end %>
+           </span>
+           </p>
         </a>
       </div>
       <div id="panel<%= count %>" class="panel-collapse collapse result-collapse">
         <div class="panel-body result-body">
-          <p><span><%= result.user.first_name %> <%= result.user.last_name %></span><span class="inner-right"> <%= result.created_at.strftime("%d %b. %Y") %></span></p>
-          <div class="results"><p>
-            <% if result.herpes == 1%>
-            <span class="green orb"></span>
-            <% elsif result.herpes == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.herpes == -1%>
-            <span class="red orb"></span>
-            <% end %> herpes </p>
-            <p>
-            <% if result.chlamydia == 1%>
-            <span class="green orb"></span>
-            <% elsif result.chlamydia == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.chlamydia == -1%>
-            <span class="red orb"></span>
-            <% end %> chlamydia </p>
-            <p>
-            <% if result.gonorrhoeae == 1%>
-            <span class="green orb"></span>
-            <% elsif result.gonorrhoeae == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.gonorrhoeae == -1%>
-            <span class="red orb"></span>
-            <% end %> gonorrhea </p>
-            <p>
-            <% if result.hiv == 1%>
-            <span class="green orb"></span>
-            <% elsif result.hiv == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.hiv == -1%>
-            <span class="red orb"></span>
-            <% end %> hiv </p>
-            <p>
-            <% if result.hepatitis == 1%>
-            <span class="green orb"></span>
-            <% elsif result.hepatitis == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.hepatitis == -1%>
-            <span class="red orb"></span>
-            <% end %> hepatitis </p>
-            <p>
-            <% if result.syphilis == 1%>
-            <span class="green orb"></span>
-            <% elsif result.syphilis == 0%>
-            <span class="grey orb"></span>
-            <% elsif result.syphilis == -1%>
-            <span class="red orb"></span>
-            <% end %> syphilis </p>
-          </div>
-          <p><span class="inner-right"> Conducted by <%= result.clinic.name %></span><span class="inner-right"></span></p>
+
+        <% if @user.current_diagnosis(disease) == "NOT TESTED" %>
+          <a href='/clinics'> Find a clinic to get tested!</a>
+        <% else %>  
+          <p><span><%= @user.first_name %> <%= @user.last_name %></span><span class="inner-right"> <%= @user.most_recent_check_for(disease).created_at.strftime("%d %b. %Y") %></span></p>
+          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  View test scan
+</button>
+
+                <% if @user.current_diagnosis(disease) == "NEGATIVE" %>
+              <i class="fa fa-user-md fa-3x"></i> <i style="color: green"class="fa fa-check-square-o fa-3x"></i>
+            <% end %>
+            
+
+
+          <p><span class="inner-right"> Conducted by <%= @user.most_recent_check_for(disease).clinic.name %></span><span class="inner-right"></span></p>
+
+        <% end %>
         </div>
+
       </div>
     </div>
+    <% count += 1 %>
   </div>
-  <% count += 1%>
   <% end %>
 </div>
 <% end %>
-<% if @user.personal_health_number.nil? %>
 
+
+<% if @user.personal_health_number.nil? %>
 <div class="container">
   <div class="jumbotron" id="health-number">
     <p>
@@ -94,7 +95,9 @@
   </div>
 </div>
 <% end %>
-<% if @results == []%>
+
+
+<% if @user.results == [] %>
 <div class="container">
   <div class="jumbotron find-clinic" id="health-number">
 
