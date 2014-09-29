@@ -26,7 +26,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a href ="/" class="navbar-brand"><i class="fa fa-tint"></i> Safebase</a>
+          <% if request.url.include?("users") || request.url.include?("clinics") %>
+            <a href ="/" class="navbar-brand"><i class="fa fa-tint"></i> Safebase</a>
+          <% else %>
+            <a href ="#" class="navbar-brand"><i class="fa fa-tint"></i> Safebase</a>
+          <% end %>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav pull-right">
