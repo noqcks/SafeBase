@@ -61,6 +61,7 @@ post '/clinic/login' do
       @clinic = Clinic.find_by(institution_id: params[:institution_id])
       if @clinic[:password] == params[:password]
         session[:id] = @clinic.id
+        session[:institution_id] = params[:institution_id]
         redirect "/clinics/#{@clinic.id}"
       end
     end

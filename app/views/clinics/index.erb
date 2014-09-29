@@ -1,24 +1,29 @@
 <%= include_gon %>
+
+<div id="clinics-border">
 <div id="map-canvas"></div>
-<div class="container-fluid" id="main">
-  <div class="row">
     <div class="col-xs-4" id="left">
-      
-      <h2>Clinic Locations</h2>
-      <% @clinics.each do |clinic| %>
-      <div class="panel-group map-group">
-        <div class="panel panel-default map-default">
-          <div class="panel-heading map-heading">
-            <a class="panel-toggle" href=""><p><%= clinic.name %></p></a></div>
+      <!-- <div class="test-list"> -->
+      <h2 id="clinics-header">Clinic Locations</h2>
+        <div class="clinics-scroll">
+        <% @clinics.each do |clinic| %>
+
+          <!-- item list -->
+          <div class="panel-group map-group">
+            <div class="panel panel-default map-default">
+              <div class="panel-heading map-heading">
+                <a class="panel-toggle" href=""><p><%= clinic.name %></p></a>
+              </div>
+            </div>
+              <p>Address: <%= clinic.address %></p>
+              <p>City: <%= clinic.city %></p>
+              <p>Phone: <%= clinic.phone %></p>
+              <p>Website: <a href="<% clinic.website %>"><%= clinic.website %></p></a>
+              <hr>
+              <% end %>
           </div>
-          <p>Adress: <%= clinic.address %></p>
-          <p>City: <%= clinic.city %></p>
-          <p>Phone: <%= clinic.phone %></p>
-          <p>Website: <a href="<% clinic.website %>"></a><%= clinic.website %></p>
-          <hr>
-          <% end %>
-      </div>
+        </div>
     </div>
-    <div class="col-xs-8"></div> 
+    <div class="col-xs-8"></div>
   </div>
 </div>
