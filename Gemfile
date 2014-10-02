@@ -10,8 +10,6 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
-gem 'gon-sinatra'
-gem 'namae'
 
 group :development, :test do
   gem 'pry'
@@ -22,4 +20,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'namae'
+  gem 'gon-sinatra'
 end
