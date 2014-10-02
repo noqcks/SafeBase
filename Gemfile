@@ -19,3 +19,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'namae'
 end
+
+group :production do
+  gem 'pg'
+end
