@@ -1,217 +1,243 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Safebase</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Safebase</title>
+    
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/application.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet" >
+    <script src="/js/jquery.js"></script>
+    <script src="/js/application.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqBtHyVzWqyQmDSOok_64N-htwJ7LW1wg"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-tint"></i> Safebase</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Log out</a></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            More<span class="caret"></span></a></li>
+             <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="#">Settings</a>
+              </li>
+              <li>
+                <a href="#">Profile</a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
+              </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="text-center sub-header"> <strong><%= @clinic.name %></strong></li>
+            <li class="text-center sub-header"><strong> <%= @clinic.institution_id %></strong></li>
+            <li class="active"><a href="#">Results</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <form class="form-inline" role="form" action="/find" method="post">
+            <input type="text" class="form-control" name="personal_health_number" placeholder="Personal Health Number" autofocus>
+            <button class="btn btn-primary btn" type="submit">Find patient</button>
+          </form>
+          <div class="row">
+          <div class="col-md-12"></br></br></div>
+          </div>
+          <% if @user %>
+          <h1 class="page-header"><%= @user.last_name %>, <%= @user.first_name %> <small><%= @user.personal_health_number %></small></h1>
+          <% end %>
+
         
-        <link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
-        <link href="/css/bootstrap.css" rel="stylesheet">
-        <link href="/css/application.css" rel="stylesheet">
-        <link href="/css/dashboard.css" rel="stylesheet" >
-            <script src="/js/jquery.js"></script>
-            <script src="/js/application.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqBtHyVzWqyQmDSOok_64N-htwJ7LW1wg"></script>
-            <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
-        </head>
-        <body>
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/"><i class="fa fa-tint"></i> Safebase</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="/logout">Logout</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#contact">Contact Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="/clinics">Clinics</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<form action="/result" method="post" id="multipleForm">
+
+    <div class="form-group">
+        <div class="col-lg-4">
+            <label class="control-label">Herpes:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="herpes" value="1">Pos
+                </label>
             </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-3 col-md-2 sidebar">
-                        <ul class="nav nav-sidebar">
-                            <li class="text-center sub-header"> <strong><%= @clinic.name %></strong></li>
-                            <li class="text-center sub-header"><strong> <%= @clinic.institution_id %></strong></li>
-                            <li class="active"><a href="#">Results</a></li>
-                            <li><a href="#">Reports</a></li>
-                            <li><a href="#">Analytics</a></li>
-                            <li><a href="#">Export</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                        <form class="form-inline" role="form" action="/find" method="post">
-                            <input type="text" class="form-control" name="personal_health_number" placeholder="Personal Health Number" autofocus>
-                            <button class="btn btn-primary btn" type="submit">Find patient</button>
-                        </form>
-                        <div class="row">
-                            <div class="col-md-12"></br></br></div>
-                        </div>
-                        <% if @user %>
-                        <h1 class="page-header"><%= @user.last_name %>, <%= @user.first_name %> <small><%= @user.personal_health_number %></small></h1>
-                        <% end %>
-                        
-                        <form action="/result" method="post" id="multipleForm">
-                    
-                            <div class="form-group">
-                                <div class="col-lg-4">
-                                    <label class="control-label">Herpes:</label>
-                                    <div class="radio" >
-                                        <label>
-                                            <input type="radio" name="herpes" value="1">Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="herpes" value="0">Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="herpes" value="-1">Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div  class="col-lg-4">
-                                    <label class="control-label">Chlamydia:</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="chlamydia" value="1" />Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="chlamydia" value="0" />Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="chlamydia" value="-1" />Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div   class="col-lg-4">
-                                    <label class=" control-label">Gonorrhea:</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="gonorrhoeae" value="1" />Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="gonorrhoeae" value="0" />Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="gonorrhoeae" value="-1" />Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div   class="col-lg-4">
-                                    <label class=" control-label">HIV:</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hiv" value="1" />Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hiv" value="0" />Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hiv" value="-1" />Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div   class="col-lg-4">
-                                    <label class=" control-label">Heptitis:</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hepatitis" value="1" />Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hepatitis" value="0" />Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="hepatitis" value="-1" />Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div   class="col-lg-4">
-                                    <label class=" control-label">Syphilis:</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="syphilis" value="1" />Pos
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="syphilis" value="0" />Neg
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="syphilis" value="-1" />Nil
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row">
-                                </div>
-                                <div class="col-lg-1">
-                                </div>
-                                <div class="col-md-5 col-md-offset-1">
-                                    <textarea style="margin-top: 20px" class="form-control" rows="7" placeholder="Comments"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-9 col-lg-offset-4">
-                                    <input type="hidden" name="personal_health_number" value="<% if @user %><%= @user.personal_health_number %><% end %>" />
-                                    <button type="submit" class="btn btn-default">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                        <script src="js/bootstrap.js"></script>
-                    </body>
-                </html>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="herpes" value="-1">Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="herpes" value="0">Nil
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div  class="col-lg-4">
+                <label class="control-label">Chlamydia:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="chlamydia" value="1" />Pos
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="chlamydia" value="-1" />Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="chlamydia" value="0" />Nil
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div   class="col-lg-4">
+                <label class=" control-label">Gonorrhea:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gonorrhoeae" value="1" />Pos
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gonorrhoeae" value="-1" />Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gonorrhoeae" value="0" />Nil
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div   class="col-lg-4">
+        <label class=" control-label">HIV:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hiv" value="1" />Pos
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hiv" value="-1" />Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hiv" value="0" />Nil
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div   class="col-lg-4">
+        <label class=" control-label">Heptitis:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hepatitis" value="1" />Pos
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hepatitis" value="-1" />Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hepatitis" value="0" />Nil
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div   class="col-lg-4">
+        <label class=" control-label">Syphilis:</label>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="syphilis" value="1" />Pos
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="syphilis" value="-1" />Neg
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="syphilis" value="0" />Nil
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="row">
+    </div>
+    <div class="col-lg-1">
+    </div>
+    <div class="col-md-5">
+    <textarea style="margin-top: 20px" class="form-control" rows="7" placeholder="Comments"></textarea>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-9 col-lg-offset-3">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+  </body>
+</html>
