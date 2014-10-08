@@ -8,5 +8,4 @@ class Result < ActiveRecord::Base
   
     validates :herpes, :chlamydia, :gonorrhoeae, :hiv, :hepatitis, :syphilis,
               format: {with: /[-1,0,1]/, message: "Test result needs to be either -1, 0 or 1"}
-
 end
