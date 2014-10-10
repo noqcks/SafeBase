@@ -66,7 +66,7 @@ post '/clinic/login' do
       end
     end
   end
-  erb :error
+  redirect '/'
 end
 
 post '/find' do

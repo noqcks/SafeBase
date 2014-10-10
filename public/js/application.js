@@ -31,7 +31,6 @@ $(document).ready(function() {
             });
 
 
-
             var infoWindow = new google.maps.InfoWindow({
                     maxWidth: 300
                 }),
@@ -48,22 +47,5 @@ $(document).ready(function() {
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
-     // ==== QUOTES =====
-//     function() {
-
-//     var quotes = $(".quotes");
-//     var quoteIndex = -1;
-
-//     function showNextQuote() {
-//         ++quoteIndex;
-//         quotes.eq(quoteIndex % quotes.length)
-//             .fadeIn(2000)
-//             // .delay(2000)
-//             .fadeOut(5000, showNextQuote);
-//     }
-
-//     showNextQuote();
-
-// };
 
 });
